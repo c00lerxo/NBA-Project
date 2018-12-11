@@ -7,7 +7,8 @@ import java.util.Set;
 @Entity
 public class City {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int id;
 

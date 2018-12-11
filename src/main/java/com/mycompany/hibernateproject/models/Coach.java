@@ -5,7 +5,8 @@ import javax.persistence.*;
 @Entity
 public class Coach {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int id;
 

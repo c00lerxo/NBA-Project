@@ -5,7 +5,8 @@ import javax.persistence.*;
 @Entity
 public class Arena {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int id;
 
