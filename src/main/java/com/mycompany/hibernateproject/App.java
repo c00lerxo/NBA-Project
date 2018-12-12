@@ -7,13 +7,16 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.HashSet;
+import java.util.List;
 
 public class App  {
+
+    static EntityManagerFactory entityManagerFactory = null;
+
     public static void main(String[] args) {
         System.out.println("Start");
 
         EntityManager entityManager = null;
-        EntityManagerFactory entityManagerFactory = null;
 
         try {
             //taka nazwa jak w persistence.xml
@@ -85,9 +88,13 @@ public class App  {
             //zakoncz transakcje
             entityManager.getTransaction().commit();
 
-            System.out.println("Done");
+
+            System.out.println("***Queries***");
+            System.out.println(Queries.getPlayersByTeam(1).get(0).getName());
+            System.out.println("Wtf?");
 
             entityManager.close();
+            System.out.println("Done");
 
         } catch (Throwable e) {
             System.err.println("Creation failed. " + e);
