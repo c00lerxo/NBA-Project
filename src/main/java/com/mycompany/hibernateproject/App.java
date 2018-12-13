@@ -1,34 +1,19 @@
 package com.mycompany.hibernateproject;
 
+import com.mycompany.hibernateproject.db.DatabaseManager;
+import com.mycompany.hibernateproject.jsonxml.JSONXMLHandler;
 import com.mycompany.hibernateproject.models.*;
 import org.joda.time.LocalDate;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import java.io.IOException;
 import java.util.HashSet;
-import java.util.List;
 
 public class App  {
 
-    static EntityManagerFactory entityManagerFactory = null;
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println("Start");
 
-        EntityManager entityManager = null;
-
-        try {
-            //taka nazwa jak w persistence.xml
-            entityManagerFactory = Persistence.createEntityManagerFactory("hibernate-dynamic");
-            //utworz entityManagera
-            entityManager = entityManagerFactory.createEntityManager();
-
-            //rozpocznij transakcje
-            entityManager.getTransaction().begin();
-
             // test data
-
             Coach coach = new Coach("Phil Jackson", "lol", 3);
             Team team = new Team("Chicago Bulls", 4);
             Player player = new Player("Michael Jordan", LocalDate.now(), "American", 20, 20, 20);
@@ -41,6 +26,8 @@ public class App  {
 
             team.setPlayers(players);
             team.setCoach(coach);
+            team.setCity(city);
+            team.setArena(arena);
             HashSet<Team> teams = new HashSet<>();
             teams.add(team);
 
@@ -55,51 +42,27 @@ public class App  {
             city.setArenas(arenas);
             city.setTeams(teams);
 
+            JSONXMLHandler handler = new JSONXMLHandler();
 
-            entityManager.persist(player);
-            entityManager.persist(team);
-            entityManager.persist(city);
-            entityManager.persist(arena);
-            entityManager.persist(coach);
+            handler.serialize(player, "xml");
+            handler.serialize(player, "json");
+            handler.serialize(team, "xml");
+            handler.serialize(team, "json");
+            handler.serialize(city, "xml");
+            handler.serialize(city, "json");
+            handler.serialize(arena, "xml");
+            handler.serialize(arena, "json");
+            handler.serialize(coach, "json");
+            handler.serialize(coach, "xml");
 
-            Player playerDb = entityManager.find(Player.class, 1);
-            Team teamDb = entityManager.find(Team.class, 1);
-            City cityDb = entityManager.find(City.class, 1);
-            Arena arenaDb = entityManager.find(Arena.class, 1);
-            Coach coachDb = entityManager.find(Coach.class, 1);
+            Player player3 = new Player("Seweryn Zachwieja", LocalDate.now(), "Polish", 40, 40, 40);
+            DatabaseManager.addToDatabase(player3);
 
-            // Test
+            Player player3Db = DatabaseManager.entityManager.find(Player.class, player3.getId());
 
-            System.out.println("***Player from DB***");
-            System.out.println("Name: " + playerDb.getName() + "\n" + playerDb.getTeam());
+            handler.serialize(player3Db, "json");
 
-            System.out.println("***Team from DB***");
-            System.out.println("Team: " + teamDb.getName() + "\n" + teamDb.getCoach());
+            DatabaseManager.close();
 
-            System.out.println("***Coach from DB***");
-            System.out.println("Coach: " + coachDb.getName() + "\n" + coachDb.getExperience());
-
-            System.out.println("***Arena from DB***");
-            System.out.println("Arena: " + arenaDb.getName() + "\n" + arenaDb.getDescription());
-
-            System.out.println("***City from DB***");
-            System.out.println("City: " + cityDb.getName() + "\n" + cityDb.getDescription());
-
-            //zakoncz transakcje
-            entityManager.getTransaction().commit();
-
-
-            System.out.println("***Queries***");
-            System.out.println(Queries.getPlayersByTeam(1).get(0).getName());
-            System.out.println("Wtf?");
-
-            entityManager.close();
-            System.out.println("Done");
-
-        } catch (Throwable e) {
-            System.err.println("Creation failed. " + e);
-        } finally {
-            entityManagerFactory.close();
-        }
     }
 }

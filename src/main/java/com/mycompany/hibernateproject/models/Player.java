@@ -1,9 +1,18 @@
 package com.mycompany.hibernateproject.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.joda.time.LocalDate;
 
 import javax.persistence.*;
 
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id",
+        scope = Player.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 public class Player {
 
@@ -18,7 +27,7 @@ public class Player {
     @Column
     private LocalDate birthday;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Team team;
 
     @Column
@@ -48,35 +57,63 @@ public class Player {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public LocalDate getBirthday() {
         return birthday;
     }
 
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
     public Team getTeam() {
         return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
     public String getNationality() {
         return nationality;
     }
 
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+
     public float getPpg() {
         return ppg;
+    }
+
+    public void setPpg(float ppg) {
+        this.ppg = ppg;
     }
 
     public float getApg() {
         return apg;
     }
 
+    public void setApg(float apg) {
+        this.apg = apg;
+    }
+
     public float getRpg() {
         return rpg;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
+    public void setRpg(float rpg) {
+        this.rpg = rpg;
     }
 }

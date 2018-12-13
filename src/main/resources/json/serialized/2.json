@@ -1,0 +1,36 @@
+{
+  "id" : 2,
+  "name" : "Chicago",
+  "description" : "Best one",
+  "teams" : [ {
+    "id" : 2,
+    "name" : "Chicago Bulls",
+    "championships" : 4,
+    "players" : [ {
+      "id" : 3,
+      "name" : "Michael Jordan",
+      "birthday" : "2018-12-13",
+      "team" : 2,
+      "nationality" : "American",
+      "ppg" : 20.0,
+      "apg" : 20.0,
+      "rpg" : 20.0
+    } ],
+    "coach" : {
+      "id" : 2,
+      "name" : "Phil Jackson",
+      "experience" : "lol",
+      "championships" : 3,
+      "team" : 2
+    },
+    "arena" : {
+      "id" : 2,
+      "name" : "Chicago Arena",
+      "description" : "Worst one",
+      "team" : 2,
+      "city" : 2
+    },
+    "city" : 2
+  } ],
+  "arenas" : [ 2 ]
+}

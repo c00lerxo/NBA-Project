@@ -1,1 +1,2 @@
-com/mycompany/hibernateproject/AppTest.class
+com/mycompany/hibernateproject/ReadFromDBTest.class
+com/mycompany/hibernateproject/SaveToDBTest.class

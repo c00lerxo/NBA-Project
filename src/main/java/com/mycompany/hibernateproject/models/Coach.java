@@ -1,7 +1,17 @@
 package com.mycompany.hibernateproject.models;
 
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id",
+        scope = Coach.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 public class Coach {
 
@@ -19,7 +29,7 @@ public class Coach {
     @Column
     private int championships;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Team_ID", referencedColumnName = "id")
     private Team team;
 
@@ -35,16 +45,36 @@ public class Coach {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getExperience() {
         return experience;
     }
 
+    public void setExperience(String experience) {
+        this.experience = experience;
+    }
+
     public int getChampionships() {
         return championships;
+    }
+
+    public void setChampionships(int championships) {
+        this.championships = championships;
+    }
+
+    public Team getTeam() {
+        return team;
     }
 
     public void setTeam(Team team) {

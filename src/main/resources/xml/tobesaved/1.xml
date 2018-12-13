@@ -1,0 +1,42 @@
+<Team>
+  <id>0</id>
+  <name>Chicago Bulls</name>
+  <championships>4</championships>
+  <players>
+    <players>
+      <id>0</id>
+      <name>Michael Jordan</name>
+      <birthday>2018-12-13</birthday>
+      <team>0</team>
+      <nationality>American</nationality>
+      <ppg>20.0</ppg>
+      <apg>20.0</apg>
+      <rpg>20.0</rpg>
+    </players>
+  </players>
+  <coach>
+    <id>0</id>
+    <name>Phil Jackson</name>
+    <experience>lol</experience>
+    <championships>3</championships>
+    <team>0</team>
+  </coach>
+  <arena>
+    <id>0</id>
+    <name>Chicago Arena</name>
+    <description>Worst one</description>
+    <team>0</team>
+    <city>
+      <id>0</id>
+      <name>Chicago</name>
+      <description>Best one</description>
+      <teams>
+        <teams>0</teams>
+      </teams>
+      <arenas>
+        <arenas>0</arenas>
+      </arenas>
+    </city>
+  </arena>
+  <city>0</city>
+</Team>

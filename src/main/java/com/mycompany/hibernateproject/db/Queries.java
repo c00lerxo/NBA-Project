@@ -1,5 +1,6 @@
-package com.mycompany.hibernateproject;
+package com.mycompany.hibernateproject.db;
 
+import com.mycompany.hibernateproject.db.DatabaseManager;
 import com.mycompany.hibernateproject.models.Player;
 import com.mycompany.hibernateproject.models.Team;
 
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class Queries {
 
-    static EntityManager entityManager = App.entityManagerFactory.createEntityManager();
+    static EntityManager entityManager = DatabaseManager.entityManagerFactory.createEntityManager();
 
     public static List<Player> getPlayersByPage(int pagenr) {
         //calculate total number
