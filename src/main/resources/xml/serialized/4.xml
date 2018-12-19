@@ -1,42 +1,42 @@
 <Coach>
-  <id>2</id>
+  <id>1</id>
   <name>Phil Jackson</name>
   <experience>lol</experience>
   <championships>3</championships>
   <team>
-    <id>2</id>
+    <id>1</id>
     <name>Chicago Bulls</name>
     <championships>4</championships>
     <players>
       <players>
-        <id>3</id>
+        <id>1</id>
         <name>Michael Jordan</name>
         <birthday>2018-12-13</birthday>
-        <team>2</team>
+        <team>1</team>
         <nationality>American</nationality>
         <ppg>20.0</ppg>
         <apg>20.0</apg>
         <rpg>20.0</rpg>
       </players>
     </players>
-    <coach>2</coach>
+    <coach>1</coach>
     <arena>
-      <id>2</id>
+      <id>1</id>
       <name>Chicago Arena</name>
       <description>Worst one</description>
-      <team>2</team>
+      <team>1</team>
       <city>
-        <id>2</id>
+        <id>1</id>
         <name>Chicago</name>
         <description>Best one</description>
         <teams>
-          <teams>2</teams>
+          <teams>1</teams>
         </teams>
         <arenas>
-          <arenas>2</arenas>
+          <arenas>1</arenas>
         </arenas>
       </city>
     </arena>
-    <city>2</city>
+    <city>1</city>
   </team>
 </Coach>

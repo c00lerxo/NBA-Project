@@ -12,8 +12,7 @@ import java.util.Set;
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id",
         scope = Team.class)
-@JsonIgnoreProperties(ignoreUnknown = true)
-@Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})@Entity
 public class Team {
 
     @Id

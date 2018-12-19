@@ -13,7 +13,7 @@ public class DatabaseManager {
 
     public static void addToDatabase(Object obj) {
         entityManager.getTransaction().begin();
-        entityManager.persist(obj);
+        entityManager.merge(obj);
         entityManager.getTransaction().commit();
     }
 

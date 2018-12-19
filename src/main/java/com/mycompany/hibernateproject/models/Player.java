@@ -1,9 +1,9 @@
 package com.mycompany.hibernateproject.models;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.hibernate.annotations.Type;
 import org.joda.time.LocalDate;
 
 import javax.persistence.*;
@@ -12,8 +12,7 @@ import javax.persistence.*;
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id",
         scope = Player.class)
-@JsonIgnoreProperties(ignoreUnknown = true)
-@Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})@Entity
 public class Player {
 
     @Id
@@ -25,6 +24,8 @@ public class Player {
     private String name;
 
     @Column
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private LocalDate birthday;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

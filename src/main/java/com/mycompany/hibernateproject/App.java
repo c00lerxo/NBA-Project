@@ -3,6 +3,7 @@ package com.mycompany.hibernateproject;
 import com.mycompany.hibernateproject.db.DatabaseManager;
 import com.mycompany.hibernateproject.jsonxml.JSONXMLHandler;
 import com.mycompany.hibernateproject.models.*;
+import org.hibernate.metamodel.relational.Database;
 import org.joda.time.LocalDate;
 
 import java.io.IOException;
@@ -42,6 +43,12 @@ public class App  {
             city.setArenas(arenas);
             city.setTeams(teams);
 
+            DatabaseManager.addToDatabase(team);
+            DatabaseManager.addToDatabase(player);
+            DatabaseManager.addToDatabase(coach);
+            DatabaseManager.addToDatabase(arena);
+            DatabaseManager.addToDatabase(city);
+
             JSONXMLHandler handler = new JSONXMLHandler();
 
             handler.serialize(player, "xml");
@@ -55,12 +62,20 @@ public class App  {
             handler.serialize(coach, "json");
             handler.serialize(coach, "xml");
 
-            Player player3 = new Player("Seweryn Zachwieja", LocalDate.now(), "Polish", 40, 40, 40);
+        /*    Player player3 = new Player("Seweryn Zachwieja", LocalDate.now(), "Polish", 40, 40, 40);
             DatabaseManager.addToDatabase(player3);
 
             Player player3Db = DatabaseManager.entityManager.find(Player.class, player3.getId());
 
-            handler.serialize(player3Db, "json");
+            handler.serialize(player3Db, "json");*/
+/*
+            Player player = new Player("Michael Jordan", LocalDate.now(), "American", 20, 20, 20);
+            DatabaseManager.addToDatabase(player);
+
+            Player examplePlayer = DatabaseManager.entityManager.find(Player.class, 1);
+            JSONXMLHandler handler = new JSONXMLHandler();
+            handler.serialize(examplePlayer, "json");*/
+
 
             DatabaseManager.close();
 
